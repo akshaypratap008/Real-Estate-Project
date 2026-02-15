@@ -1,3 +1,5 @@
+# these list and dictionary maps the name of the locality with the sector number. Used chatgpt to find these sectors. This dictionary is used in feature engineering 4_feature_engineering.ipynb file
+
 raw_entries = [
     ("sohna", "sohna"),
     ("nirvana country", "sector 50"),

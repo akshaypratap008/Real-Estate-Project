@@ -1,3 +1,5 @@
+# this dictionary give all the ameneties from features column a luxury score from 0 to 10. Ameneties which are basic and easily available in most flats is given low score and features which are available in luxury properties are given higher score. These scores are generated using chatgpt. This dictionary is used in feature engineering 4_feature_engineering.ipynb file
+
 amenity_luxury_score = {
     "Cigar Lounge": 9,
     "Entrance Lobby": 5,
