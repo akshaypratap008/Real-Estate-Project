@@ -4,3 +4,4 @@ ipykernel
 matplotlib
 seaborn
 scikit-learn
+xgboost
