@@ -4,4 +4,3 @@ ipykernel
 matplotlib
 seaborn
 scikit-learn
-shap
