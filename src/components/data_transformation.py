@@ -4,11 +4,11 @@ from dataclasses import dataclass
 
 import pandas as pd
 import numpy as np
+import sklearn
 
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder, TargetEncoder
 from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
 
 from src.exceptions import CustomeException
 from src.logger import logging
@@ -25,23 +25,23 @@ class DataTransformation:
     def build_processor_object(self):
         # function converts different columns to appropriate encoding
         try:
-            cat_columns_to_encode = ['property_type', 'sector', 'balcony', 'agePossession', 'furnishing_type', 'luxury_category', 'floor_category']
+            cat_col_ordinal = ['property_type', 'balcony', 'luxury_category', 'floor_category']
 
-            num_columns_to_encode = ['bedRoom', 'bathroom', 'built_up_area', 'servant room', 'store room']
+            num_col_standard_scaler = ['bedRoom', 'bathroom', 'built_up_area', 'servant room', 'store room']
 
-            cat_columns_to_ohe = ['agePossession', 'furnishing_type'] 
+            cat_col_ohe = ['agePossession', 'furnishing_type']
 
-            cat_column_to_target_encode = ['sector']
+            cat_col_target_encode = ['sector']
 
-            preprocessor = ColumnTransformer([
-                ('cat_col_encoding', OrdinalEncoder(), cat_columns_to_encode),
-                ('num_col_to_encode', StandardScaler(), num_columns_to_encode),
-                ('cat_col_to_ohe', OneHotEncoder, cat_columns_to_ohe),
-                ('cat_col_to_target_encode', TargetEncoder(), cat_column_to_target_encode)
-            ], remainder = 'passthrough')
-
+            preprocessor = ColumnTransformer(
+                    [
+                    ('ordinal_encoding', OrdinalEncoder(), cat_col_ordinal),
+                    ('standard_scaling', StandardScaler(), num_col_standard_scaler),
+                    ('ohe', OneHotEncoder(handle_unknown='ignore'), cat_col_ohe),
+                    ('target_encoding', TargetEncoder(), cat_col_target_encode)
+                ]
+            )
             logging.info('Column encoding complete')
-
             return preprocessor
         
         except Exception as e:
@@ -63,23 +63,28 @@ class DataTransformation:
 
             #train df
             input_feature_train_df = train_df.drop(columns = [target_column])
-            target_feature_train_df = train_df['price']
+            target_feature_train_df = train_df[target_column]
+            input_feature_train_df['built_up_area'] = np.log1p(input_feature_train_df['built_up_area'])**2
             
             #test_df
             input_feature_test_df = test_df.drop(columns = [target_column])
             target_feature_test_df = test_df[target_column]
+            input_feature_test_df['built_up_area'] = np.log1p(input_feature_test_df['built_up_area'])**2
 
             logging.info('train and test set split into input feature and target feature')
 
             # apply transformations on X and y
-            input_feature_train_arr = preprocessing_obj.fit_transform(input_feature_train_df)
-            input_feature_test_arr = preprocessing_obj.fit_transform(input_feature_test_df)
+            input_feature_train_arr = preprocessing_obj.fit_transform(input_feature_train_df, target_feature_train_df)      # targetEncoder needs both X and y to fit
+            input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df)
 
-            target_feature_train_df = np.log1p(target_feature_train_df)     # log transformation of target feature 'price'
+            # log transformation of target feature 'price'
+            target_feature_train_df = np.log1p(target_feature_train_df)     
+            target_feature_test_df = np.log1p(target_feature_test_df)     
+            
 
             # concat input_feature and taget feature for train and test respectively
-            train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
-            test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
+            train_arr = np.c_[input_feature_train_arr, target_feature_train_df]
+            test_arr = np.c_[input_feature_test_arr, target_feature_test_df]
 
             logging.info('train and test array prepared')
 
@@ -95,7 +100,7 @@ class DataTransformation:
                 self.data_transformation_config.preprocessor_obj_file_path
             )  
 
-        except:
-            pass
+        except Exception as e:
+            raise CustomeException(e, sys)
 
 
