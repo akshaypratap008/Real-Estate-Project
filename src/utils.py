@@ -13,6 +13,9 @@ from src.logger import logging
 from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.model_selection import cross_val_score, KFold, RandomizedSearchCV
 from sklearn.pipeline import Pipeline
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import GridSearchCV
+
 
 def save_object(file_path, obj):
     try:
@@ -24,37 +27,37 @@ def save_object(file_path, obj):
     except Exception as e:
         raise CustomeException(e, sys)
     
-def evaluate_models(models:dict, params_grid:dict, X_train, y_train, X_test, y_test):
-    try:
-        scores = {}
+def evaluate_models(model, grid_param:dict, X_train, y_train, X_test, y_test):
+    try:        
+        model = RandomForestRegressor()
+                
+        kfold = KFold(n_splits=10, shuffle=True, random_state=42)
+        search = RandomizedSearchCV(model, grid_param, n_iter=30, scoring='r2', cv = kfold, verbose=2, n_jobs=-1, random_state=42)
+        logging.info('Model Training started')
+        search.fit(X_train, y_train)
+        
+        logging.info('best model found')
+        best_model = search.best_estimator_
+        best_score = search.best_score_      
+        logging.info('new parameters fit on training data')
 
-        for model_name, model in models.items():
-            
-            pipeline = Pipeline([
-                ('regressor', model)
-            ])
+        y_train_pred = best_model.predict(X_train)
+        y_test_pred = best_model.predict(X_test)
 
-            kfold = KFold(n_splits=10, shuffle= True, random_state=42)
-            search = RandomizedSearchCV(estimator=pipeline, param_distributions=params_grid[model_name],scoring='r2', n_iter=20 ,cv = kfold, n_jobs = -1, verbose = 1, random_state=42)
+        train_mae_score = mean_absolute_error(y_train, y_train_pred)
+        test_mae_score = mean_absolute_error(y_test, y_test_pred)
 
-            search.fit(X_train, y_train)
-            best_model = search.best_estimator_
-            y_pred = best_model.predict(X_test)
+        logging.info('train and test score calculated')
 
-            r2 = r2_score(np.expm1(y_test), np.expm1(y_pred))
-            mae = mean_absolute_error(np.expm1(y_test), np.expm1(y_pred))
+        print('mae_train: ', train_mae_score)
+        print('mae_test: ', test_mae_score)
+        print('best_cv_r2_score: ', search.best_score_)
+        return train_mae_score, test_mae_score, best_model
 
-            scores[model_name] = {
-                'best_params': search.best_params_,
-                'cv_r2': search.best_score_,
-                'r2': r2,
-                'mae': mae
-            }
+    except Exception as e:
+        raise CustomeException(e, sys)
+    
 
-        return scores
-
-    except:
-        pass
 
 
     

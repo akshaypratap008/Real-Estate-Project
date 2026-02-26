@@ -7,5 +7,6 @@ scikit-learn
 xgboost
 dill
 category_encoders
+pickle
 
 -e .

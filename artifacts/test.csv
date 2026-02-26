@@ -11,7 +11,7 @@ house,sector 49,6.75,4,4,3,relatively new,2087.97,1,0,semifurnished,budget,low-r
 house,sector 25,10.5,4,4,2,old,3618.0,1,0,semifurnished,semi-luxury,low-rise
 flat,sector 28,2.0,3,3,1,old,1245.0,0,0,semifurnished,semi-luxury,high-rise
 flat,sector 92,0.78,2,2,3,under construction,843.0,0,0,unfurnished,budget,low-rise
-house,sector 3,1.25,2,3,0,relatively old,160.0,0,0,unfurnished,budget,low-rise
+house,sector 3,1.25,2,3,0,relatively old,1721.6,0,0,unfurnished,budget,low-rise
 flat,sector 81,2.25,3,3,3+,new,1938.0,1,0,furnished,luxury,medium-rise
 flat,sector 67,3.5,3,4,3,relatively new,2490.0,1,0,semifurnished,luxury,high-rise
 flat,sector 36,0.4,1,1,1,relatively new,436.0,0,0,unfurnished,budget,medium-rise
@@ -116,7 +116,7 @@ flat,sector 102,2.2,3,4,3+,relatively old,1954.0,1,0,unfurnished,luxury,medium-r
 house,sector 41,2.65,3,3,3,new,1800.0,1,0,semifurnished,budget,medium-rise
 house,sector 43,10.5,4,4,2,old,3762.0,1,0,unfurnished,semi-luxury,low-rise
 flat,sector 86,1.3,3,3,3,relatively old,1755.0,1,0,unfurnished,semi-luxury,high-rise
-house,sector 7,2.25,5,3,0,old,148.0,0,0,unfurnished,budget,low-rise
+house,sector 7,2.25,5,3,0,old,1592.48,0,0,unfurnished,budget,low-rise
 flat,sector 37,0.38,2,2,1,relatively new,925.0,0,0,unfurnished,semi-luxury,medium-rise
 house,sector 109,6.15,5,5,3+,relatively new,2250.03,1,1,semifurnished,luxury,low-rise
 flat,sector 49,1.95,3,3,3,old,1641.0,0,0,semifurnished,semi-luxury,low-rise
@@ -139,7 +139,7 @@ flat,sector 99,1.05,2,2,3,relatively new,1390.0,0,0,unfurnished,budget,low-rise
 house,sector 7,6.5,3,2,3+,old,4320.0,0,0,unfurnished,budget,low-rise
 flat,sector 65,1.95,2,2,3,under construction,1146.0,0,0,unfurnished,budget,high-rise
 flat,sector 79,1.55,3,4,3,relatively new,1412.0,1,0,semifurnished,luxury,high-rise
-house,sector 3,0.7,3,3,0,relatively old,117.0,0,0,unfurnished,budget,low-rise
+house,sector 3,0.7,3,3,0,relatively old,1258.92,0,0,unfurnished,budget,low-rise
 house,sector 49,4.45,6,6,3,relatively old,2880.0,1,1,furnished,luxury,low-rise
 flat,sector 82,3.0,4,6,3+,relatively new,4445.0,1,0,semifurnished,semi-luxury,high-rise
 flat,sector 109,2.95,4,4,3+,relatively new,3150.0,1,1,semifurnished,luxury,medium-rise
@@ -199,11 +199,11 @@ house,sector 3,4.12,2,1,3+,relatively old,4635.0,0,0,unfurnished,budget,low-rise
 flat,sector 61,1.7,2,2,2,under construction,1278.0,0,0,unfurnished,budget,medium-rise
 flat,sector 37,1.2,3,4,3,relatively new,1635.0,0,0,unfurnished,luxury,medium-rise
 flat,sector 102,1.77,3,3,3,relatively new,1661.0,0,0,unfurnished,luxury,low-rise
-house,sector 21,1.6,5,5,2,relatively new,120.0,0,0,unfurnished,semi-luxury,low-rise
+house,sector 21,1.6,5,5,2,relatively new,1291.2,0,0,unfurnished,semi-luxury,low-rise
 flat,sector 90,0.7,2,2,3,new,1229.0,0,0,unfurnished,semi-luxury,medium-rise
 house,sector 48,6.4,3,4,3,relatively new,2592.04,1,1,semifurnished,luxury,low-rise
 flat,sector 70,2.35,4,4,3+,relatively old,2667.0,1,0,semifurnished,semi-luxury,medium-rise
-flat,sector 88,1.45,2,2,3+,relatively new,133.0,0,0,furnished,semi-luxury,medium-rise
+flat,sector 88,1.45,2,2,3+,relatively new,1431.08,0,0,furnished,semi-luxury,medium-rise
 flat,sector 72,3.3,3,4,3+,new,2185.14,1,0,furnished,luxury,high-rise
 house,sector 41,1.65,1,1,0,relatively old,1200.0,0,0,unfurnished,budget,low-rise
 house,sector 39,1.8,1,1,2,relatively new,800.0,0,0,unfurnished,semi-luxury,low-rise
@@ -237,7 +237,7 @@ house,sector 26,7.0,5,5,2,relatively new,1782.76,1,0,unfurnished,budget,low-rise
 flat,sector 74,2.7,3,3,3,new,2018.09,0,1,unfurnished,semi-luxury,high-rise
 flat,sector 47,0.83,3,2,2,new,1244.0,0,0,unfurnished,budget,low-rise
 flat,sector 95,0.2,1,1,1,relatively new,407.0,0,0,unfurnished,budget,low-rise
-house,sector 3,0.61,2,2,2,relatively old,61.0,0,0,unfurnished,budget,low-rise
+house,sector 3,0.61,2,2,2,relatively old,656.36,0,0,unfurnished,budget,low-rise
 house,sector 24,1.9,10,9,3+,relatively new,5018.0,0,0,furnished,budget,low-rise
 flat,sector 104,2.62,4,4,3+,relatively new,2864.0,1,0,unfurnished,luxury,high-rise
 flat,sector 70,0.53,2,2,2,under construction,995.0,0,0,unfurnished,budget,medium-rise
@@ -329,7 +329,7 @@ flat,sector 2,1.38,2,2,2,under construction,1130.0,0,0,semifurnished,luxury,medi
 flat,sector 84,0.73,2,2,3+,relatively new,1022.0,0,1,unfurnished,luxury,medium-rise
 flat,sector 67,3.4,3,4,3,relatively new,2008.0,1,0,semifurnished,luxury,high-rise
 flat,sector 108,1.9,2,2,2,relatively new,1255.0,0,0,unfurnished,semi-luxury,medium-rise
-flat,sector 79,1.47,2,2,3,new,93.0,0,0,unfurnished,semi-luxury,medium-rise
+flat,sector 79,1.47,2,2,3,new,1000.68,0,0,unfurnished,semi-luxury,medium-rise
 house,sector 31,4.25,5,5,3+,relatively old,1619.97,0,1,semifurnished,budget,low-rise
 flat,sector 37,1.2,3,2,1,under construction,1900.0,1,0,unfurnished,budget,medium-rise
 flat,sector 62,2.15,2,2,3,under construction,1676.0,0,0,unfurnished,semi-luxury,high-rise
@@ -483,7 +483,7 @@ flat,sector 84,0.41,2,2,2,new,565.0,0,0,semifurnished,budget,medium-rise
 house,sector 50,12.5,6,5,3,relatively old,3078.0,1,0,semifurnished,budget,medium-rise
 flat,sector 52,5.0,5,5,3+,relatively old,5200.0,0,0,unfurnished,semi-luxury,low-rise
 flat,sector 69,1.76,3,4,2,relatively new,1682.0,0,0,unfurnished,luxury,low-rise
-flat,sector 88,1.15,2,2,1,new,120.0,0,0,unfurnished,semi-luxury,high-rise
+flat,sector 88,1.15,2,2,1,new,1291.2,0,0,unfurnished,semi-luxury,high-rise
 flat,sector 37,0.86,3,3,2,new,1600.0,0,0,unfurnished,budget,low-rise
 flat,sector 102,1.75,3,3,3+,relatively new,1460.0,0,0,unfurnished,budget,low-rise
 flat,sector 81,3.45,4,4,3+,relatively old,2538.0,1,0,unfurnished,semi-luxury,high-rise
@@ -595,10 +595,10 @@ flat,sector 79,1.3,2,2,2,relatively new,1336.0,0,0,semifurnished,semi-luxury,med
 flat,sector 65,2.8,3,3,3+,relatively new,1650.07,1,0,semifurnished,semi-luxury,low-rise
 flat,sector 107,0.35,2,2,2,relatively new,608.0,0,0,unfurnished,budget,medium-rise
 house,sector 43,10.85,8,8,3,relatively old,3762.0,1,1,furnished,luxury,low-rise
-flat,sector 47,1.31,2,2,2,under construction,85.0,0,0,unfurnished,semi-luxury,medium-rise
+flat,sector 47,1.31,2,2,2,under construction,914.6,0,0,unfurnished,semi-luxury,medium-rise
 flat,sector 9,1.25,4,3,3,old,2007.0,1,0,semifurnished,budget,low-rise
 flat,sector 106,0.92,2,2,3+,relatively new,940.0,0,0,unfurnished,luxury,low-rise
-flat,sector 43,2.5,3,3,2,new,195.0,0,0,unfurnished,semi-luxury,low-rise
+flat,sector 43,2.5,3,3,2,new,2098.2,0,0,unfurnished,semi-luxury,low-rise
 flat,sector 104,2.6,4,4,3+,relatively new,3051.0,1,0,semifurnished,luxury,high-rise
 flat,sector 2,1.55,3,4,3+,old,1745.0,1,0,unfurnished,semi-luxury,medium-rise
 flat,sector 56,1.55,3,3,3+,relatively old,1900.0,1,0,semifurnished,semi-luxury,medium-rise
@@ -610,7 +610,7 @@ flat,sector 85,1.1,3,4,3,relatively old,1461.0,1,0,furnished,semi-luxury,medium-
 flat,sector 88,1.31,2,2,3+,relatively new,1470.0,0,0,unfurnished,semi-luxury,low-rise
 flat,sector 102,2.15,3,4,3,relatively new,1954.0,1,0,unfurnished,semi-luxury,high-rise
 flat,sector 70,1.75,3,5,0,relatively new,1950.0,0,0,unfurnished,semi-luxury,low-rise
-flat,sector 51,0.3,1,1,0,relatively old,80.0,0,0,unfurnished,budget,low-rise
+flat,sector 51,0.3,1,1,0,relatively old,860.8,0,0,unfurnished,budget,low-rise
 flat,sector 70,2.75,3,3,3+,relatively new,2150.0,0,0,unfurnished,semi-luxury,high-rise
 flat,sector 99,1.3,3,3,0,new,1997.0,0,0,unfurnished,semi-luxury,high-rise
 flat,sector 37,1.67,4,4,3,relatively new,2091.0,0,0,semifurnished,luxury,high-rise
@@ -633,7 +633,7 @@ flat,sector 103,2.4,4,6,3+,relatively new,2456.0,1,0,unfurnished,luxury,high-ris
 flat,sector 90,2.05,4,4,3+,relatively new,2014.0,0,0,semifurnished,budget,medium-rise
 flat,sector 69,1.2,2,3,1,relatively new,1227.0,0,0,unfurnished,luxury,low-rise
 flat,sector 79,1.28,3,3,3,relatively new,1260.0,0,0,semifurnished,luxury,high-rise
-flat,sector 79,1.1,2,2,3,new,81.0,0,0,unfurnished,semi-luxury,medium-rise
+flat,sector 79,1.1,2,2,3,new,871.56,0,0,unfurnished,semi-luxury,medium-rise
 flat,sector 66,3.45,3,4,3,relatively new,2000.0,1,0,semifurnished,semi-luxury,medium-rise
 flat,sector 109,1.4,3,3,3+,relatively new,1591.0,0,0,unfurnished,semi-luxury,high-rise
 flat,sector 104,1.2,2,2,2,under construction,874.0,0,0,unfurnished,budget,high-rise
@@ -647,7 +647,7 @@ flat,sector 104,0.22,1,2,2,new,335.0,0,0,unfurnished,semi-luxury,low-rise
 flat,sector 22,6.16,4,5,3+,new,3333.0,1,0,semifurnished,budget,medium-rise
 flat,sector 90,1.24,3,3,3+,relatively new,1600.0,0,0,unfurnished,semi-luxury,medium-rise
 flat,sector 113,1.65,3,2,2,relatively new,1420.0,0,0,unfurnished,budget,low-rise
-flat,sector 45,2.4,3,3,2,new,196.0,1,0,semifurnished,budget,low-rise
+flat,sector 45,2.4,3,3,2,new,2108.96,1,0,semifurnished,budget,low-rise
 flat,sector 37,1.25,3,3,3,relatively new,1557.0,0,0,unfurnished,budget,low-rise
 flat,sector 56,2.11,3,2,3,relatively new,2250.0,0,0,semifurnished,luxury,medium-rise
 flat,sector 104,2.52,4,4,3+,relatively new,2800.0,1,1,semifurnished,luxury,high-rise
