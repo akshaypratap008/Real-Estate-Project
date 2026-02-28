@@ -57,6 +57,12 @@ def evaluate_models(model, grid_param:dict, X_train, y_train, X_test, y_test):
     except Exception as e:
         raise CustomeException(e, sys)
     
+def load_object(file_path):
+    try:
+        with open(file_path, 'rb') as file:
+            return pickle.load(file)
+    except Exception as e:
+        raise CustomeException(e, sys)
 
 
 
