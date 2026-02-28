@@ -7,7 +7,7 @@ import numpy as np
 import sklearn
 
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder
+from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder, FunctionTransformer
 from sklearn.compose import ColumnTransformer
 from category_encoders import TargetEncoder
 
@@ -26,18 +26,23 @@ class DataTransformation:
     def build_processor_object(self):
         # function converts different columns to appropriate encoding
         try:
-            cat_columns_ohe = ['property_type', 'balcony', 'agePossession', 'furnishing_type', 'luxury_category', 'floor_category']       #one hot encoding
+            cat_columns_ohe = ['property_type', 'balcony', 'luxury_category','floor_category']       #one hot encoding
             cat_columns_ord = ['agePossession', 'furnishing_type']  #ordinal encoding
             cat_columns_te = ['sector']     #target encoding
-            num_columns = ['bedRoom', 'bathroom', 'built_up_area', 'servant room', 'store room']
+            num_columns = ['bedRoom', 'bathroom', 'servant room', 'store room']
 
-            preprocessor = ColumnTransformer(
-                    [
+            built_up_area_transformation_pipeline = Pipeline([
+                ('log', FunctionTransformer(np.log1p)),
+                ('scaling', StandardScaler())
+            ])
+
+            preprocessor = ColumnTransformer([
+                    ('built_up_area', built_up_area_transformation_pipeline, ['built_up_area']),
                     ('ordinal_encoding', OrdinalEncoder(), cat_columns_ord),
                     ('standard_scaling', StandardScaler(), num_columns),
-                    ('ohe', OneHotEncoder(handle_unknown='ignore'), cat_columns_ohe),
+                    ('ohe', OneHotEncoder(handle_unknown='ignore', drop='first'), cat_columns_ohe),
                     ('target_encoding', TargetEncoder(), cat_columns_te)
-                ], remainder='passthrough'
+                ], remainder='drop'
             )
 
             return preprocessor
@@ -59,16 +64,11 @@ class DataTransformation:
 
             target_column = 'price'
 
-            #train df
+            #input features train df
             input_feature_train_df = train_df.drop(columns = [target_column])
-            input_feature_train_df['built_up_area'] = np.log1p(input_feature_train_df['built_up_area'])
-            target_feature_train_df = train_df[target_column]
 
-            
-            #test_df
+            #input features test_df
             input_feature_test_df = test_df.drop(columns = [target_column])
-            input_feature_test_df['built_up_area'] = np.log1p(input_feature_test_df['built_up_area'])
-            target_feature_test_df = test_df[target_column]
 
             # target column transformation
             target_feature_train_df = np.log1p(train_df[target_column])

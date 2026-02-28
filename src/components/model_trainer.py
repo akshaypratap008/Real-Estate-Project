@@ -30,7 +30,7 @@ class ModelTrainer:
            model = RandomForestRegressor()
            
            grid_param = {
-            'n_estimators': [250, 300, 350],
+            'n_estimators': [250, 300, 350, 400],
             'criterion': ['squared_error'],   
             'max_depth': [25, 30, 35],
             'min_samples_split': [2, 3, 4],
