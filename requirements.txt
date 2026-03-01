@@ -8,5 +8,8 @@ xgboost
 dill
 category_encoders
 pickle
-
+fastapi
+requests
+python-dotenv
+folium
 -e .

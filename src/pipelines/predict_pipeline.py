@@ -14,9 +14,13 @@ class PredictPipeline:
             preprocessor = load_object(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\preprocessor.pkl')
 
             model = load_object(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\model.pkl')
+            logging.info('model and preprocessor object loaded')
 
             input_data_preprocessed = preprocessor.transform(input_data)
+            logging.info('input data preprocessing completed')
+
             prediction = model.predict(input_data_preprocessed)
+            logging.info('prediction output generated')
 
             return prediction
         
@@ -70,6 +74,7 @@ class CustomData:
                     'floor_category': self.floor_category
             }
 
+            logging.info('input data converted into dataframe')
             return pd.DataFrame([input_data_dict])
         
         except Exception as e:
