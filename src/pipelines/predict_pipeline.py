@@ -1,5 +1,6 @@
 import sys
 import pandas as pd
+import numpy as np
 
 from src.utils import load_object
 from src.exceptions import CustomeException
@@ -22,7 +23,7 @@ class PredictPipeline:
             prediction = model.predict(input_data_preprocessed)
             logging.info('prediction output generated')
 
-            return prediction
+            return np.expm1(prediction)
         
         except Exception as e:
             raise CustomeException(e, sys)
