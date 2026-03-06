@@ -38,7 +38,7 @@ class DataTransformation:
 
             preprocessor = ColumnTransformer([
                     ('built_up_area', built_up_area_transformation_pipeline, ['built_up_area']),
-                    ('ordinal_encoding', OrdinalEncoder(), cat_columns_ord),
+                    ('ordinal_encoding', OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1), cat_columns_ord),
                     ('standard_scaling', StandardScaler(), num_columns),
                     ('ohe', OneHotEncoder(handle_unknown='ignore', drop='first'), cat_columns_ohe),
                     ('target_encoding', TargetEncoder(), cat_columns_te)

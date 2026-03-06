@@ -14,7 +14,7 @@ def make_prediction(user_input: UserInput):
     try:
         input_df = pd.DataFrame([{
             'property_type': user_input.property_type,
-            'sector': user_input.sector,
+            'sector': user_input.sector.strip().lower(),
             'bedRoom': user_input.bedroom,
             'bathroom': user_input.bathroom,
             'balcony': user_input.balcony,
@@ -32,7 +32,10 @@ def make_prediction(user_input: UserInput):
         prediction = model.predict(input_df)[0]
 
         logging.info('Prediction pipeline successfully run')
-        return JSONResponse(status_code=200, content = f'Predicted price of the property is {prediction}')
+
+        if prediction < 1:
+            return JSONResponse(status_code=200, content = f'Predicted price of the property is {round(prediction * 100, 2)} Lakhs')
+        return JSONResponse(status_code=200, content = f'Predicted price of the property is {round(prediction, 2)} Crores')
     except Exception as e:
         raise CustomeException(e, sys)
 
