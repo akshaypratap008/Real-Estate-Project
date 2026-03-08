@@ -16,3 +16,8 @@ class UserInput(BaseModel):
     luxury_category: Annotated[Literal['budget', 'luxury'], Field(..., description='What type of luxury does the user want')]
     floor_category: Annotated[Literal['low-rise', 'medium-rise', 'high-rise'], Field(..., description='Which floor does the user want the property? low-rise: 0-3, medium-rise: 4-10, high-rise: 10 above')]
 
+class PredictionResponse(BaseModel):
+
+    predicted_price: float = Field(..., description="Price predicted by the model")
+    price_unit: Literal['Lakhs', 'Crores'] = Field(..., description='Unit of the predicted price(lakhs or crores). If predicted price less than 1, it is converted into lakhs')
+    message : str 

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from src.api.schemas import UserInput
+from src.api.schemas import UserInput, PredictionResponse
 import pandas as pd
 from src.pipelines.predict_pipeline import PredictPipeline
 from fastapi.responses import JSONResponse
@@ -9,6 +9,15 @@ import sys
 
 app = FastAPI()
 
+MODEL_VERSION = '1.0.0'
+model = PredictPipeline()
+
+# home end point
+@app.get('/')
+def home():
+    return {'message': 'Real estate price prediction model'}
+
+# prediction end point
 @app.post('/predict')
 def make_prediction(user_input: UserInput):
     try:
@@ -28,14 +37,26 @@ def make_prediction(user_input: UserInput):
         }])
         logging.info('Input data validated using pydantic and converted into dataframe object')
 
-        model = PredictPipeline()
-        prediction = model.predict(input_df)[0]
+        prediction, price_unit = model.predict(input_df)
+        predicted_price = round(prediction[0], 2)
 
         logging.info('Prediction pipeline successfully run')
 
-        if prediction < 1:
-            return JSONResponse(status_code=200, content = f'Predicted price of the property is {round(prediction * 100, 2)} Lakhs')
-        return JSONResponse(status_code=200, content = f'Predicted price of the property is {round(prediction, 2)} Crores')
+        return PredictionResponse(
+            predicted_price=predicted_price,
+            price_unit=price_unit,
+            message=f'The predicted price of the property is {predicted_price} {price_unit}'
+        )
+        
     except Exception as e:
         raise CustomeException(e, sys)
+    
+# health check end point
+@app.get('/health')
+def health_check():
+    return {
+        'status': 'OK',
+        'version': MODEL_VERSION, 
+        'model_loaded': model is not None
+    }
 

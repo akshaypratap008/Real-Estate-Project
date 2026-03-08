@@ -12,9 +12,9 @@ class PredictPipeline:
 
     def predict(self, input_data):
         try:
-            preprocessor = load_object(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\preprocessor.pkl')
+            preprocessor = load_object('artifacts/preprocessor.pkl')
 
-            model = load_object(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\model.pkl')
+            model = load_object('artifacts/model.pkl')
             logging.info('model and preprocessor object loaded')
 
             input_data_preprocessed = preprocessor.transform(input_data)
@@ -23,7 +23,15 @@ class PredictPipeline:
             prediction = model.predict(input_data_preprocessed)
             logging.info('prediction output generated')
 
-            return np.expm1(prediction)
+            predicted_price = np.expm1(prediction)
+
+            if predicted_price < 1:
+                predicted_price *= 10
+                price_unit = 'Lakhs'
+            else:
+                price_unit = 'Crores'
+
+            return predicted_price, price_unit
         
         except Exception as e:
             raise CustomeException(e, sys)
