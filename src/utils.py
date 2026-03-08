@@ -6,6 +6,7 @@ import numpy as np
 
 import dill
 import pickle
+import pandas as pd
 
 from src.exceptions import CustomeException
 from src.logger import logging
@@ -66,4 +67,5 @@ def load_object(file_path):
 
 
 
-    
+
+

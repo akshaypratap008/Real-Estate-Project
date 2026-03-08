@@ -1,9 +1,13 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
 import plotly.express as px
+import ast
 
 st.set_page_config(page_icon='Plotting Demo')
+st.set_page_config(layout = 'centered')
 
 df = pd.read_csv('artifacts/data/preprocessed-data/gurgaon_properties_with_lat_long.csv')
 
@@ -15,6 +19,7 @@ st.dataframe(df)
 
 st.title("Analytics")
 
+# map view
 property_type = st.multiselect(label = 'Property Type', options = ['flat', 'house'], width = 250)
 
 def plot_map(df):
@@ -28,11 +33,36 @@ else:
     group_df = df[df['property_type'].isin(property_type)].groupby('sector')[['price', 'built_up_area', 'price_per_sqft', 'lat', 'lon']].mean()
     plot_map(group_df)
 
+# wordcloud
+st.title('Wordcloud')
+df1 = pd.read_csv(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\data\preprocessed-data\gurgaon_properties_cleaned_v1.csv')
 
+sector = st.multiselect(label = 'Select sector', options = df1['sector'].unique(), width = 250)
 
+wordcloud_df = df1[['sector', 'features']]
 
+def create_wordcloud(wordcloud_df):
+    main = []
+    for row in wordcloud_df['features'].dropna().apply(ast.literal_eval):       # ast.literal_eval convert the list into python list
+        main.extend(row)       # items of the row list are added to the main list
 
+    feature_text = ' '.join(main)
 
+    # creating wordcloud 
+    plt.rcParams['font.family'] = 'Arial'
 
+    wordcloud = WordCloud(width = 800, height = 800, background_color='white', stopwords= set(['s']), min_font_size=5).generate(feature_text)
+
+    fig, ax = plt.subplots(figsize=(6,6), facecolor=None)
+    ax.imshow(wordcloud, interpolation='bilinear')
+    ax.axis('off')
+    plt.tight_layout(pad = 0)
+    st.pyplot(fig, use_container_width=True)
+
+if not sector:
+    create_wordcloud(wordcloud_df)
+else:
+    wordcloud_df = wordcloud_df[wordcloud_df['sector'].isin(sector)]
+    create_wordcloud(wordcloud_df)
 
 
