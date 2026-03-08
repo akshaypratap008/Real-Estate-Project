@@ -2,18 +2,18 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import requests
-from src.api.schemas import UserInput
+from src.api.schemas import UserInput, PredictionResponse
 from src.exceptions import CustomeException
 import sys
 
 #load dataframe to add options in the form 
-df = pd.read_csv(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\data\preprocessed-data\gurgaon_properties_post_feature_selection.csv')
+df = pd.read_csv('artifacts\data\preprocessed-data\gurgaon_properties_post_feature_selection.csv')
 
 sectors = sorted(df['sector'].unique())
 age_possesion = df['agePossession'].unique()
 
 # api url
-API_URL = "http://127.0.0.1:8000/predict"
+PREDICTION_API_URL = "http://127.0.0.1:8000/predict"
 
 st.title("🏠 Price Prediction")
 
@@ -32,7 +32,7 @@ luxury_category = st.selectbox('Luxury Category', ['budget', 'luxury'])
 floor_category = st.selectbox('Floor Category', ['low-rise', 'medium-rise', 'high-rise'])
 
 # convert user input into pydantic object
-input_data = {
+input_data: UserInput = {
     'property_type': property_type,
     'sector': sector,
     'bedroom' : bedroom,
@@ -47,12 +47,17 @@ input_data = {
     'floor_category' : floor_category
 }
 
+input_data = UserInput(**input_data)        # input validating using the pydantic model
+
 # ---- prediction ----
 if st.button("Predict Price"):
     try:
-        response = requests.post(url=API_URL, json=input_data)
+        response = requests.post(url=PREDICTION_API_URL, json=input_data.model_dump())      #model dump converts the pydantic model into json
         if response.status_code == 200:
-            result = response.json()
+            json_result = response.json()
+            json_result = PredictionResponse(**json_result)   # response validation and convert into pydantic model
+            json_result = json_result.model_dump()      # pydantic model converted again into dict to show results
+            result = json_result['message']
             st.success(result)
         else:
             st.error(f"API error: {response.status_code} - {response.text}")

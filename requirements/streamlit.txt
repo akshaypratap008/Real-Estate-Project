@@ -1,0 +1,5 @@
+pydantic
+streamlit
+numpy
+pandas
+requests

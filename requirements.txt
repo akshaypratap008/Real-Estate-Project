@@ -13,5 +13,5 @@ requests
 python-dotenv
 folium
 streamlit
-
+plotly-express
 -e .
