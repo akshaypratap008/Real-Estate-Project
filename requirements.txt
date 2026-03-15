@@ -15,4 +15,5 @@ folium
 streamlit
 plotly-express
 wordcloud
+rapidfuzz
 -e .
