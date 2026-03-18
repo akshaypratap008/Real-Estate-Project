@@ -26,3 +26,4 @@ class ExplainationResponse(BaseModel):
 
     predicted_price: float = Field(..., description="Price predicted by the model")
     feature_contributions: Dict[str, float]
+    expected_value: float

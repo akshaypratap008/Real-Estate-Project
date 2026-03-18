@@ -18,6 +18,23 @@ model = PredictPipeline()
 rf_model = joblib.load("artifacts\model.pkl")
 preprocessor = joblib.load("artifacts\preprocessor.pkl")
 
+def user_input_to_df(user_input: UserInput) -> pd.DataFrame:
+    input_df = pd.DataFrame([{
+                'property_type': user_input.property_type,
+                'sector': user_input.sector.strip().lower(),
+                'bedRoom': user_input.bedroom,
+                'bathroom': user_input.bathroom,
+                'balcony': user_input.balcony,
+                'agePossession': user_input.agePossession,
+                'built_up_area': user_input.built_up_area,
+                'servant room': user_input.servant_room,
+                'store room': user_input.store_room,
+                'furnishing_type': user_input.furnishing_type,
+                'luxury_category': user_input.luxury_category,
+                'floor_category': user_input.floor_category
+            }])
+    return input_df
+
 
 # home end point
 @app.get('/')
@@ -28,20 +45,7 @@ def home():
 @app.post('/predict', response_model=PredictionResponse)
 def make_prediction(user_input: UserInput):
     try:
-        input_df = pd.DataFrame([{
-            'property_type': user_input.property_type,
-            'sector': user_input.sector.strip().lower(),
-            'bedRoom': user_input.bedroom,
-            'bathroom': user_input.bathroom,
-            'balcony': user_input.balcony,
-            'agePossession': user_input.agePossession,
-            'built_up_area': user_input.built_up_area,
-            'servant room': user_input.servant_room,
-            'store room': user_input.store_room,
-            'furnishing_type': user_input.furnishing_type,
-            'luxury_category': user_input.luxury_category,
-            'floor_category': user_input.floor_category
-        }])
+        input_df = user_input_to_df(user_input)
         logging.info('Input data validated using pydantic and converted into dataframe object')
 
         prediction, price_unit = model.predict(input_df)
@@ -52,7 +56,7 @@ def make_prediction(user_input: UserInput):
         return PredictionResponse(
             predicted_price=predicted_price,
             price_unit=price_unit,
-            message=f'The predicted price of the property is {predicted_price} {price_unit}'
+            message=f'The predicted price of the property is ₹ {predicted_price} {price_unit}'
         )
         
     except Exception as e:
@@ -62,20 +66,7 @@ def make_prediction(user_input: UserInput):
 @app.post('/explain', response_model=ExplainationResponse)
 def explain(user_input: UserInput):
     try:
-        input_df = pd.DataFrame([{
-            'property_type': user_input.property_type,
-            'sector': user_input.sector.strip().lower(),
-            'bedRoom': user_input.bedroom,
-            'bathroom': user_input.bathroom,
-            'balcony': user_input.balcony,
-            'agePossession': user_input.agePossession,
-            'built_up_area': user_input.built_up_area,
-            'servant room': user_input.servant_room,
-            'store room': user_input.store_room,
-            'furnishing_type': user_input.furnishing_type,
-            'luxury_category': user_input.luxury_category,
-            'floor_category': user_input.floor_category
-        }])
+        input_df = user_input_to_df(user_input)
         logging.info('Input data validated using pydantic and converted into dataframe object')
 
         transformed_input = preprocessor.transform(input_df)
@@ -89,9 +80,12 @@ def explain(user_input: UserInput):
 
         contributions = dict(zip(feature_names, shap_values[0]))
 
+        expected_value = explainer.expected_value
+
         return ExplainationResponse(
             predicted_price = prediction,
-            feature_contributions = contributions
+            feature_contributions = contributions,
+            expected_value = expected_value
         )
     
     except Exception as e:

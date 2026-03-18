@@ -8,7 +8,7 @@ import ast
 import plotly.figure_factory as ff
 
 st.set_page_config(page_icon='Plotting Demo')
-st.set_page_config(layout = 'centered', initial_sidebar_state = 'auto')
+st.set_page_config(page_title="Analytics", layout="wide")
 
 lat_long_df = pd.read_csv('artifacts/data/preprocessed-data/gurgaon_properties_with_lat_long.csv')
 
@@ -17,7 +17,7 @@ lat_long_df['price_per_sqft'] = round((lat_long_df['price']/lat_long_df['built_u
 group_df = lat_long_df.groupby('sector')[['price', 'built_up_area', 'price_per_sqft', 'lat', 'lon']].mean()
 
 st.header("Sector - Price per sqft Geopmap")
-st.write('*Shows how average price‑per‑sqft varies across Gurgaon sectors, visualized geographically for quick spatial comparison.*')
+st.caption('*Shows how average price‑per‑sqft varies across Gurgaon sectors, visualized geographically for quick spatial comparison.*')
 
 # map view
 property_type = st.pills(label = 'Select Property Type', options = ['Flat', 'House'], selection_mode='multi')
@@ -36,7 +36,7 @@ st.divider()
 
 # wordcloud
 st.header('Features Wordcloud')
-st.write('*Highlights the most frequently mentioned property features across listings, giving a quick sense of common amenities and selling points.*')
+st.caption('*Highlights the most frequently mentioned property features across listings, giving a quick sense of common amenities and selling points.*')
 st.write()
 original_df_uncleaned = pd.read_csv(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\data\preprocessed-data\gurgaon_properties_cleaned_v1.csv')
 
@@ -56,11 +56,11 @@ def create_wordcloud(wordcloud_df):
 
     wordcloud = WordCloud(width = 800, height = 800, background_color='#0E1117', stopwords= set(['s']), min_font_size=5, colormap='Set3').generate(feature_text)
 
-    fig, ax = plt.subplots(figsize=(6,6), facecolor='#0E1117')
+    fig, ax = plt.subplots(figsize=(4,4), facecolor='#0E1117')
     ax.imshow(wordcloud, interpolation='bilinear')
     ax.axis('off')
     plt.tight_layout(pad = 0)
-    st.pyplot(fig, use_container_width=True)
+    st.pyplot(fig, use_container_width=False)
 
 if not sector:
     create_wordcloud(wordcloud_df)
@@ -71,7 +71,7 @@ st.divider()
 
 # price vs built up area scatter plot
 st.header('Area vs Price')
-st.write('*Displays how property prices scale with built‑up area, helping identify size‑to‑price trends and outliers.*')
+st.caption('*Displays how property prices scale with built‑up area, helping identify size‑to‑price trends and outliers.*')
 
 original_df_cleaned= pd.read_csv(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\data\preprocessed-data\gurgaon_properties_post_feature_selection.csv')
 
@@ -94,7 +94,7 @@ st.divider()
 
 # pie chart for number of bedrooms
 st.header('Bedroom Count: Overall & Sector‑Wise')
-st.write('*Compares the distribution of bedroom counts across all properties and within specific sectors to reveal housing mix patterns.*')
+st.caption('*Compares the distribution of bedroom counts across all properties and within specific sectors to reveal housing mix patterns.*')
 
 def create_pie(df):
     fig2 = px.pie(data_frame=df, names = 'bedRoom')  
@@ -121,7 +121,7 @@ st.divider()
 
 # box plot for different bedroom prices
 st.header('Price distribution of Number of Bedrooms')
-st.write('*Shows how property prices vary across different bedroom categories, helping compare affordability across configurations.*')
+st.caption('*Shows how property prices vary across different bedroom categories, helping compare affordability across configurations.*')
 
 selected_property_type = st.segmented_control(label = 'Select property type', options = ['Flat', 'House'], width = 250, selection_mode = 'multi', key = 'property_type_price_distribution')
 
@@ -140,7 +140,7 @@ st.divider()
 
 # dist plot of flats and houses distplot
 st.header('Price distribution of Flats and Houses')
-st.write('*Compares the overall price distribution of flats versus houses to highlight differences in market positioning.*')
+st.caption('*Compares the overall price distribution of flats versus houses to highlight differences in market positioning.*')
 flat_hist_data = original_df_cleaned[original_df_cleaned['property_type'] == 'flat']['price'].tolist()
 house_hist_data = original_df_cleaned[original_df_cleaned['property_type'] == 'house']['price'].tolist()
 fig5 = ff.create_distplot(hist_data= [flat_hist_data, house_hist_data], group_labels=['Flats', 'House'], show_rug=False)
@@ -151,7 +151,7 @@ st.divider()
 
 # top sectors by price per sqft
 st.header('Sector Price Ranking')
-st.write('*Shows the five most expensive and five most affordable sectors based on average price per square foot.*')
+st.caption('*Shows the five most expensive and five most affordable sectors based on average price per square foot.*')
 selected_order = st.pills(label = '', options = ['Top 5 sectors', 'Bottom 5 sectors'], width = 250, selection_mode='single', key = 'per_sqft_order', label_visibility='hidden')
 
 original_df_cleaned['price_per_sqft'] = round((original_df_cleaned['price'] / original_df_cleaned['built_up_area'])*10000000, 2)

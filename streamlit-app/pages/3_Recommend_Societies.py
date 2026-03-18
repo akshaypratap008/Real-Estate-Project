@@ -36,7 +36,7 @@ def recomend_properties(property_name, top_n = 5):
     return recommendation_df
 
 st.markdown('## Location and Radius')
-st.markdown('Select a landmark and radius to find societies with in the radius')
+st.caption('*Select a landmark and radius to find societies within the radius*')
 
 col1, col2, col3 = st.columns(3, vertical_alignment="bottom")
 
