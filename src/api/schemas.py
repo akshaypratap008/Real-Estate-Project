@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Literal, Annotated
+from typing import Literal, Annotated, Dict
 
 class UserInput(BaseModel):
 
@@ -21,3 +21,8 @@ class PredictionResponse(BaseModel):
     predicted_price: float = Field(..., description="Price predicted by the model")
     price_unit: Literal['Lakhs', 'Crores'] = Field(..., description='Unit of the predicted price(lakhs or crores). If predicted price less than 1, it is converted into lakhs')
     message : str 
+
+class ExplainationResponse(BaseModel):
+
+    predicted_price: float = Field(..., description="Price predicted by the model")
+    feature_contributions: Dict[str, float]

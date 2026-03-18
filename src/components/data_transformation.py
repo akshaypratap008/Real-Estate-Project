@@ -32,7 +32,7 @@ class DataTransformation:
             num_columns = ['bedRoom', 'bathroom', 'servant room', 'store room']
 
             built_up_area_transformation_pipeline = Pipeline([
-                ('log', FunctionTransformer(np.log1p)),
+                ('log', FunctionTransformer(np.log1p, feature_names_out="one-to-one")),
                 ('scaling', StandardScaler())
             ])
 

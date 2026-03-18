@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import requests
-from src.api.schemas import UserInput, PredictionResponse
+from src.api.schemas import UserInput, PredictionResponse, ExplainationResponse
 from src.exceptions import CustomeException
 import sys
 
@@ -14,6 +14,8 @@ age_possesion = df['agePossession'].unique()
 
 # api url
 PREDICTION_API_URL = "http://127.0.0.1:8000/predict"
+EXPLAINATION_API_URL = "http://127.0.0.1:8000/explain"
+
 
 st.title("🏠 Price Prediction")
 
@@ -65,3 +67,18 @@ if st.button("Predict Price"):
         raise CustomeException(e, sys)
 
     
+#---------------------------------INSIGHTS MODULE----------------------------------
+
+if st.button('Explain'):
+    try:
+        response = requests.post(url=EXPLAINATION_API_URL, json=input_data.model_dump())      #model dump converts the pydantic model into json
+        if response.status_code == 200:
+            json_result = response.json()
+            json_result = ExplainationResponse(**json_result)   # response validation and convert into pydantic model
+            json_result = json_result.model_dump()      # pydantic model converted again into dict to show results
+            result = json_result
+            st.success(result)
+        else:
+            st.error(f"API error: {response.status_code} - {response.text}")
+    except Exception as e:
+        raise CustomeException(e, sys)
