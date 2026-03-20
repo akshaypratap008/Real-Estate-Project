@@ -10,14 +10,14 @@ import plotly.graph_objects as go
 
 st.set_page_config(page_title="Prediction", layout="wide")
 #load dataframe to add options in the form 
-df = pd.read_csv('artifacts\data\preprocessed-data\gurgaon_properties_post_feature_selection.csv')
+df = pd.read_csv('artifacts/data/preprocessed-data/gurgaon_properties_post_feature_selection.csv')
 
 sectors = sorted(df['sector'].unique())
 age_possesion = df['agePossession'].unique()
 
 # api url
-PREDICTION_API_URL = "http://127.0.0.1:8000/predict"
-EXPLAINATION_API_URL = "http://127.0.0.1:8000/explain"
+PREDICTION_API_URL = "https://real-estate-model-api-1097778515095.europe-west1.run.app/predict"
+EXPLAINATION_API_URL = "https://real-estate-model-api-1097778515095.europe-west1.run.app/explain"
 
 
 
@@ -45,7 +45,7 @@ with st.container():
     with col3:
         balcony = st.selectbox('Balcony', ['1', '2', '3+'])
         furnishing_type = st.selectbox('Furnishing Type', ['Unfurnished', 'Semifurnished', 'Furnished'])
-        luxury_category = st.selectbox('Luxury Category', ['Budget', 'Semi-luxury', 'Luxury'])
+        luxury_category = st.selectbox('Luxury Category', ['Budget', 'Luxury'])
         floor_category = st.selectbox('Floor Category', ['Low-rise', 'Medium-rise', 'High-rise'])
 
 # convert user input into pydantic object
@@ -127,12 +127,12 @@ if st.button("Predict Price"):
             with col1:
                 st.markdown('📈 Increasing Price')
                 for _, row in top_pos.iterrows():
-                    st.badge(label = f'**{row['Feature']}** → +₹ {round(row['Value'], 2)} Cr', color="blue")
+                    st.badge(label = f"**{row['Feature']}** → +₹ {round(row['Value'], 2)} Cr", color="blue")
             
             with col2:
                 st.markdown('📉 Decreasing Price')
                 for _, row in top_neg.iterrows():
-                    st.badge(label = f'**{row['Feature']}** → ₹ {round(row['Value'], 4)} Cr', color="red")
+                    st.badge(label = f"**{row['Feature']}** → ₹ {round(row['Value'], 4)} Cr", color="red")
             st.caption("The values above are SHAP values for different features")
 
             col1, col2 = st.columns(2)

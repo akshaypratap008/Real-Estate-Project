@@ -1,0 +1,48 @@
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+env/
+.venv/
+
+# Ignore notebooks
+notebooks/
+*.ipynb
+
+# Ignore raw and intermediate data
+artifacts/train.csv
+artifacts/test.csv
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore git
+.git/
+.gitignore
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE/editor configs
+.vscode/
+.idea/
+
+# Ignore build artifacts
+dist/
+build/
+*.egg-info/
+
+# Ignore Streamlit app (API image doesn't need it)
+
+# Ignore root-level requirements (API uses requirements/api.txt)
+requirements.txt
+
+# Ignore anything else not needed for API
+main.py
+setup.py

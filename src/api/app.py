@@ -15,8 +15,8 @@ MODEL_VERSION = '1.0.0'
 model = PredictPipeline()
 
 # load model and preprocessor directly for SHAP 
-rf_model = joblib.load("artifacts\model.pkl")
-preprocessor = joblib.load("artifacts\preprocessor.pkl")
+rf_model = joblib.load("artifacts/model.pkl")
+preprocessor = joblib.load("artifacts/preprocessor.pkl")
 
 def user_input_to_df(user_input: UserInput) -> pd.DataFrame:
     input_df = pd.DataFrame([{
@@ -83,9 +83,9 @@ def explain(user_input: UserInput):
         expected_value = explainer.expected_value
 
         return ExplainationResponse(
-            predicted_price = prediction,
+            predicted_price = prediction[0],
             feature_contributions = contributions,
-            expected_value = expected_value
+            expected_value = expected_value[0]
         )
     
     except Exception as e:

@@ -13,8 +13,8 @@ import streamlit.components.v1 as components
 
 
 # data
-df = pd.read_csv(r'artifacts\data\preprocessed-data\gurgaon_properties_post_feature_selection.csv')
-EXPLAIN_API_URL = "http://127.0.0.1:8000/explain"
+df = pd.read_csv('artifacts/data/preprocessed-data/gurgaon_properties_post_feature_selection.csv')
+EXPLAIN_API_URL = "https://real-estate-model-api-1097778515095.europe-west1.run.app/explain"
 
 st.set_page_config(page_title="Insights Playground", layout="wide")
 

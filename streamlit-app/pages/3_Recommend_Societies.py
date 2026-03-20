@@ -6,10 +6,10 @@ import numpy as np
 st.set_page_config(page_title='Recommend Similar Societies')
 
 # load files
-data = pickle.load(open(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\location_df.pkl', 'rb'))
-cos_sim1 = pickle.load(open(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\cos_sim1.pkl', 'rb'))
-cos_sim2 = pickle.load(open(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\cos_sim2.pkl', 'rb'))
-cos_sim3 = pickle.load(open(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\cos_sim3.pkl', 'rb'))
+data = pickle.load(open('artifacts/location_df.pkl', 'rb'))
+cos_sim1 = pickle.load(open('artifacts/cos_sim1.pkl', 'rb'))
+cos_sim2 = pickle.load(open('artifacts/cos_sim2.pkl', 'rb'))
+cos_sim3 = pickle.load(open('artifacts/cos_sim3.pkl', 'rb'))
 
 def recomend_properties(property_name, top_n = 5):
     cosine_matrix = 0.2*cos_sim1 + 0.8*cos_sim2 + 0.1*cos_sim3

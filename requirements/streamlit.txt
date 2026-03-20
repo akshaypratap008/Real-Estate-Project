@@ -3,3 +3,8 @@ streamlit
 numpy
 pandas
 requests
+plotly
+matplotlib
+wordcloud
+shap
+scipy

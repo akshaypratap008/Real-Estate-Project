@@ -38,7 +38,7 @@ st.divider()
 st.header('Features Wordcloud')
 st.caption('*Highlights the most frequently mentioned property features across listings, giving a quick sense of common amenities and selling points.*')
 st.write()
-original_df_uncleaned = pd.read_csv(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\data\preprocessed-data\gurgaon_properties_cleaned_v1.csv')
+original_df_uncleaned = pd.read_csv('artifacts/data/preprocessed-data/gurgaon_properties_cleaned_v1.csv')
 
 sector = st.multiselect(label = 'Select sectors', options = [i.upper() for i in original_df_uncleaned['sector'].unique()])
 
@@ -73,7 +73,7 @@ st.divider()
 st.header('Area vs Price')
 st.caption('*Displays how property prices scale with built‑up area, helping identify size‑to‑price trends and outliers.*')
 
-original_df_cleaned= pd.read_csv(r'C:\Users\apaks\Desktop\Real Estate Project\artifacts\data\preprocessed-data\gurgaon_properties_post_feature_selection.csv')
+original_df_cleaned= pd.read_csv('artifacts/data/preprocessed-data/gurgaon_properties_post_feature_selection.csv')
 
 selected_property_type = st.segmented_control(label = 'Select property type', options = ['Flat', 'House'], width = 250, selection_mode = 'multi', key = 'property_type_scatterplot')
 
