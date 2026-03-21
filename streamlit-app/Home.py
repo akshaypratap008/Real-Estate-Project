@@ -18,5 +18,6 @@ This application predicts real‑estate prices based on property features such a
 
 Use the sidebar to navigate:
 - **Prediction** → Get price estimate  
-- **Analytics** → Explore data insights  
+- **Analytics** → Explore data insights 
+- **Insights** 
 """)
