@@ -30,11 +30,11 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
-        
+              
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy real-estate-ui \
-          --image=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/real-estate-streamlit:latest \
-          --region=${{ secrets.GCP_REGION }} \
-          --platform=managed \
-          --allow-unauthenticated
+            --image=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/real-estate-streamlit:latest \
+            --region=${{ secrets.GCP_REGION }} \
+            --platform=managed \
+            --allow-unauthenticated
