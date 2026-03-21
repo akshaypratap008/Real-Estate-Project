@@ -34,7 +34,7 @@ jobs:
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy real-estate-ui \
-          --image docker.io/ ${{ secrets.DOCKERHUB_USERNAME }}/real-estate-streamlit:latest \
+          --image docker.io/ ${{ secrets.DOCKERHUB_USERNAME }}/real-estate-ui:latest \
           --region ${{ secrets.GCP_REGION }} \
           --platform managed \
           --allow-unauthenticated
