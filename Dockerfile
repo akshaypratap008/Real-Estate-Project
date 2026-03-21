@@ -16,16 +16,7 @@ COPY streamlit-app/Home.py ./streamlit-app/Home.py
 COPY streamlit-app/pages ./streamlit-app/pages
 
 # copy from artifacts
-#csv files
-COPY artifacts/data/preprocessed-data/gurgaon_properties_cleaned_v1.csv ./artifacts/data/preprocessed-data/gurgaon_properties_cleaned_v1.csv
-COPY artifacts/data/preprocessed-data/gurgaon_properties_with_lat_long.csv ./artifacts/data/preprocessed-data/gurgaon_properties_with_lat_long.csv
-COPY artifacts/data/preprocessed-data/gurgaon_properties_post_feature_selection.csv ./artifacts/data/preprocessed-data/gurgaon_properties_post_feature_selection.csv
-
-# copy pickle files 
-COPY artifacts/location_df.pkl ./artifacts/location_df.pkl
-COPY artifacts/cos_sim1.pkl ./artifacts/cos_sim1.pkl
-COPY artifacts/cos_sim2.pkl ./artifacts/cos_sim2.pkl
-COPY artifacts/cos_sim3.pkl ./artifacts/cos_sim3.pkl
+COPY artifacts ./artifacts
 
 # copy other files
 COPY src ./src
