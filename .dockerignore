@@ -14,8 +14,7 @@ notebooks/
 *.ipynb
 
 # Ignore raw and intermediate data
-artifacts/train.csv
-artifacts/test.csv
+
 
 # Ignore logs
 logs/
