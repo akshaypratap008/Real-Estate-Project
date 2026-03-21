@@ -15,9 +15,6 @@ env/
 notebooks/
 *.ipynb
 
-# Ignore raw and intermediate data
-
-
 # Ignore logs
 logs/
 *.log
@@ -39,11 +36,6 @@ dist/
 build/
 *.egg-info/
 
-# Ignore Streamlit app (API image doesn't need it)
 
-# Ignore root-level requirements (API uses requirements/api.txt)
-requirements.txt
-
-# Ignore anything else not needed for API
-main.py
-setup.py
+# Ignore API-only files
+src/api/
