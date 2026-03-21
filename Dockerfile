@@ -8,18 +8,18 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app
 
 # copy requirements and install dependencies
-COPY requirements/streamlit.txt ./requirements/streamlit.txt
-RUN pip install --no-cache-dir -r ./requirements/streamlit.txt
+COPY requirements/streamlit.txt /app/requirements/streamlit.txt
+RUN pip install --no-cache-dir -r /app/requirements/streamlit.txt
 
 # copy streamlit code files 
-COPY streamlit-app/Home.py ./streamlit-app/Home.py
-COPY streamlit-app/pages ./streamlit-app/pages
+COPY streamlit-app/Home.py /app/streamlit-app/Home.py
+COPY streamlit-app/pages /app/streamlit-app/pages
 
 # copy artifacts
-COPY artifacts ./artifacts
+COPY artifacts /app/artifacts
 
 # copy src folder
-COPY src ./src
+COPY src /app/src
 
 # expose the ports
 EXPOSE 8080
