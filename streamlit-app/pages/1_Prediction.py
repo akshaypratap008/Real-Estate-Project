@@ -114,7 +114,7 @@ if st.button("Predict Price"):
                 st.metric("Model's baseline Pirce", f'₹ {expected_value} Cr', border = True, height='stretch')
 
             with col3:
-                delta_value = round(pridicted_price - expected_value, 2)
+                delta_value = round(expected_value - pridicted_price, 2)
                 st.metric(label= 'Difference from Baseline Price', value = f'₹ {pridicted_price} Cr', delta = f'₹ {delta_value} Cr', border = True, height='stretch')
 
             st.divider()
