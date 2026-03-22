@@ -38,6 +38,7 @@ st.markdown("""
                 -   Top 3 features increasing the price
                 -   Top 3 features decreasing the price
             - SHAP-powered interpretability to understand model reasoning
+        
             """)
 
 if st.button(label = 'View Technical Implementation'):

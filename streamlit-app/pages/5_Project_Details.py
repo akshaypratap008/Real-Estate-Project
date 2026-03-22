@@ -8,7 +8,7 @@ st.link_button(label = 'Visit Repository on GitHub', url= 'https://github.com/ak
 st.markdown('''
 This project demonstrates production-grade data science engineering:
 
-- End-to-end ML pipeline from raw data → persisted model → API → interactive UI
+- End-to-end ML pipeline from raw data → persisted model → API → Docker Containerization -> interactive UI
 - Thoughtful feature engineering with domain-specific transformations (log scaling for area, target encoding for location)
 - Explainable AI through SHAP integration
 - Scalable architecture with cloud deployment
@@ -32,7 +32,7 @@ st.markdown('''
             ```
             ''')
 if st.button('Detailed Project Structure'):
-    st.switch_page('6_Project_Structure')
+    st.switch_page('pages/6_Project_Structure.py')
 
 st.markdown('''
             #### 2. Data Pipeline (ETL)
@@ -157,9 +157,9 @@ st.markdown('''
             **Scalability Considerations:**
 
             - ***Backend API:*** FastAPI deployed on Google Cloud Run (URL: https://real-estate-model-api-1097778515095.europe-west1.run.app
-            - **Frontend UI**: Streamlit app also deployed on Google Cloud Run (URL: https://real-estate-ui-1097778515095.europe-west1.run.app)
+            - ***Frontend UI***: Streamlit app also deployed on Google Cloud Run (URL: https://real-estate-ui-1097778515095.europe-west1.run.app)
             - Async request handling for concurrent predictions
-            - Stateless design allows horizontal scaling
+            - ***Containerization***: Both services deployed using Docker containers, with images available on Docker Hub for easy replication, version control, and deployment across environments. Link to Docker hub - https://hub.docker.com/u/akshay0008
             
             **Logging & Monitoring:**
             - Structured logging with ```src.logger``` (custom logger module)
@@ -172,11 +172,23 @@ st.markdown('''
             - Meaningful error messages propagated to frontend
             ''')
 
+
 st.markdown('''
-            #### 7. Sector Mapping & Luxury Scoring
+            #### 7. CI/CD Pipeline (GitHub Actions)
+            - Fully automated build + deploy pipeline using GitHub Actions
+            - Workflow triggers:
+                - `push` on `main` 
+            - Stages:
+                - `build` (package + Docker image)
+                - `deploy` (Cloud Run deployment for API and Streamlit UI)
+            - Docker image publishing to Docker Hub
+            
+''')
+st.markdown('''
+            #### 8. Sector Mapping & Luxury Scoring
             **Special Data Features:**
-            - ```sector_mapping.py``` — Likely sector encoding/mapping utilities build using googlemaps API
-            - ```luxury_score.py``` — Derived luxury metric for property classification
+            - ```sector_mapping.py``` — Likely sector encoding/mapping utilities build using Google Maps Geocoding API
+            - ```luxury_score.py``` — Derived luxury metric for property classification. Classification done using KMean clustering algorithm. 
             - Latitude/Longitude precomputation for geospatial analysis (gurgaon_properties_with_lat_long.csv)''')
 
-
+st.caption('The description of the project is gerenated using copilot', text_alignment='right')
