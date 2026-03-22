@@ -9,6 +9,7 @@ A full-stack real estate price prediction platform for Gurgaon, India.
 - Streamlit interactive dashboard for prediction, analytics, and recommendations.
 - App delivers price estimates in crores/lakhs based on user inputs.
 
+
 ## Repository Structure
 
 - `main.py`: Basic FastAPI skeleton for health check and simple endpoints.
