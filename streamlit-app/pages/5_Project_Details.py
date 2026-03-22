@@ -110,7 +110,7 @@ st.markdown('''
             - Pydantic ```UserInput``` schema with strict type hints & descriptive error messages
             - Literal types enforce category constraints (e.g., property_type: 'flat' | 'house')
             
-            **Prediction Response:**
+            **Response Validation:**
             - ```PredictionResponse```: predicted_price + price_unit (auto-converts to Lakhs/Crores)
             - ```ExplainationResponse```: prediction + SHAP feature contributions + expected value
             
