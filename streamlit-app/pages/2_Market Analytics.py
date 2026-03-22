@@ -8,7 +8,7 @@ import ast
 import plotly.figure_factory as ff
 
 st.set_page_config(page_icon='Plotting Demo')
-st.set_page_config(page_title="Analytics", layout="wide")
+st.set_page_config(page_title="Market Analytics", layout="wide")
 
 lat_long_df = pd.read_csv('artifacts/data/preprocessed-data/gurgaon_properties_with_lat_long.csv')
 

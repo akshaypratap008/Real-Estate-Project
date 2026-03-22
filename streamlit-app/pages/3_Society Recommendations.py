@@ -3,7 +3,7 @@ import pickle
 import pandas as pd
 import numpy as np
 
-st.set_page_config(page_title='Recommend Similar Societies')
+st.set_page_config(page_title='Society Recommendations')
 
 # load files
 data = pickle.load(open('artifacts/location_df.pkl', 'rb'))

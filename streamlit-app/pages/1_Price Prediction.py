@@ -8,7 +8,7 @@ import sys
 import plotly.express as px
 import plotly.graph_objects as go
 
-st.set_page_config(page_title="Prediction", layout="wide")
+st.set_page_config(page_title="Price Prediction", layout="wide")
 #load dataframe to add options in the form 
 df = pd.read_csv('artifacts/data/preprocessed-data/gurgaon_properties_post_feature_selection.csv')
 
