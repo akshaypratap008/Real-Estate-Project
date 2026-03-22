@@ -9,7 +9,7 @@ ENV PYTHONPATH=/app
 
 # copy requirements and install dependencies
 COPY requirements/streamlit.txt /app/requirements/streamlit.txt
-RUN pip install --no-cache-dir -r /app/requirements/streamlit.txt
+RUN pip install -r /app/requirements/streamlit.txt
 
 # copy streamlit code files 
 COPY streamlit-app/Home.py /app/streamlit-app/Home.py

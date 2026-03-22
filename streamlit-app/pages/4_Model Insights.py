@@ -81,14 +81,21 @@ try:
                     st.metric("Model's baseline Pirce", f'₹ {expected_value} Cr', border = True, height = 'content')
 
                 
-                delta_value = round(expected_value - pridicted_price, 2)
-                st.metric(label= 'Difference from Baseline Price', value = f'₹ {pridicted_price} Cr', delta = f'₹ {delta_value} Cr', border = True, height = 'content')
+                delta_value = round(pridicted_price - expected_value, 2)
+                st.metric(
+                    label='Difference from Baseline Price',
+                    value=f'₹ {delta_value} Cr',
+                    delta=delta_value,          
+                    border=True,
+                    height='content',
+                    delta_color="normal"
+                    )
 
                 st.divider()
 
                 col3, col4 = st.columns(2)
                 top_pos = shap_values_df.head(3)
-                top_neg = shap_values_df.tail(3)
+                top_neg = shap_values_df.tail(3).sort_values('Value')
                 with col3:
                     st.markdown('#### Features **increasing** the price')
                     for i in top_pos['Feature']:

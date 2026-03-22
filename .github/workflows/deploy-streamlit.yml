@@ -21,7 +21,7 @@ jobs:
       
       - name: Build and push docker image
         run: |
-          docker build --no-cache -t ${{ secrets.DOCKERHUB_USERNAME }}/real-estate-streamlit:latest .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/real-estate-streamlit:latest .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/real-estate-streamlit:latest
       
       - name: Authenticate to Google Cloud
@@ -34,7 +34,6 @@ jobs:
         with: 
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           # service_account_key: ${{ secrets.GCP_SA_KEY }}
-          export_default_credentials: true
                     
       - name: Deploy to Cloud Run
         run: |

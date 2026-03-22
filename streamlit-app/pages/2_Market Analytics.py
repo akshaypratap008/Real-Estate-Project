@@ -16,6 +16,8 @@ lat_long_df['price_per_sqft'] = round((lat_long_df['price']/lat_long_df['built_u
 
 group_df = lat_long_df.groupby('sector')[['price', 'built_up_area', 'price_per_sqft', 'lat', 'lon']].mean()
 
+st.title('Market Analytics')
+st.markdown('Gurgaon Real estate market analysis through intactive UI')
 st.header("Sector - Price per sqft Geopmap")
 st.caption('*Shows how average price‑per‑sqft varies across Gurgaon sectors, visualized geographically for quick spatial comparison.*')
 

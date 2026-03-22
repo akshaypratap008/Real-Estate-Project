@@ -11,6 +11,9 @@ cos_sim1 = pickle.load(open('artifacts/cos_sim1.pkl', 'rb'))
 cos_sim2 = pickle.load(open('artifacts/cos_sim2.pkl', 'rb'))
 cos_sim3 = pickle.load(open('artifacts/cos_sim3.pkl', 'rb'))
 
+st.title('Similar Society Recommendations')
+st.markdown('## Location and Radius')
+st.caption('*Select a landmark and radius to find societies within the radius*')
 def recomend_properties(property_name, top_n = 5):
     cosine_matrix = 0.2*cos_sim1 + 0.8*cos_sim2 + 0.1*cos_sim3
 
@@ -35,8 +38,6 @@ def recomend_properties(property_name, top_n = 5):
 
     return recommendation_df
 
-st.markdown('## Location and Radius')
-st.caption('*Select a landmark and radius to find societies within the radius*')
 
 col1, col2, col3 = st.columns(3, vertical_alignment="bottom")
 
