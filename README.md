@@ -1,6 +1,6 @@
 # Real Estate Project
 
-## Overview
+## Overview.
 
 A full-stack real estate price prediction platform for Gurgaon, India.
 
